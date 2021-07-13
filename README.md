@@ -1,70 +1,56 @@
-# [KeithCheongWaiKeong.github.io]
+# **My Portfolio**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Click [**here**](https://keithcheongwaikeong.github.io/) to see the published portfolio.
 
-## Available Scripts
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), following the instructions of [react-gh-pages](https://github.com/gitname/react-gh-pages).
 
-In the project directory, you can run:
+Most of the documentation for now is just for me to note important points of running this app.
 
-### `yarn start`
+Feel free to clone and save this onto your own repository if you want a quick setup onto your Github Pages.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## **First Time Setup**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Change the `homepage` property to your desired GitHub Pages URL.
 
-### `yarn test`
+```json
+// If you are using it on a repository with GitHub Pages enabled
+"homepage": "http://{username}.github.io/{repo-name}"
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+// If you are using it on your main GitHub Pages repository
+"homepage": "http://{username}.github.io/"
 
-### `yarn build`
+// My example:
+"homepage": "https://keithcheongwaikeong.github.io/"
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Install the `node_modules` packages and deploy a build, this also creates a branch called `gh-pages` in your repository.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```sh
+$ yarn
+$ yarn run deploy
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You would need to change the GitHub Pages source branch to the `gh-pages` branch at **Settings -> Pages** before you can see your deployed page.
 
-### `yarn eject`
+## **Running the App Locally**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To test and run your app locally, you can run scripts like any other standard React Apps.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+$ yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Running it locally should automatically open your browser and direct you to the localhost port you have configured in the app, the default is [localhost:3000](http://localhost:3000/).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## **Deployment**
 
-## Learn More
+Your changes will not be seen until the build is redeployed into the `gh-pages` branch, which can be easily done with `yarn run deploy`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+$ yarn run deploy
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### **Notes:**
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. It doesn't matter if you had committed anything onto your main branch before deploying a new build, but I feel it is good practise to commit your changes **before** performing any deployment.
+2. It takes a moment after deployment for you to see your new changes published onto the page, so _don't_ panic! It will be published soon!
