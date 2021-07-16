@@ -5,17 +5,17 @@ import { Box, Typography, Grid, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import avatar from '../avatar.jpg';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
 	avatar: {
 		width: theme.spacing(15),
 		height: theme.spacing(15),
 		margin: theme.spacing(1),
 	},
 	title: {
-		color: '#95d5b2',
+		color: theme.palette.secondary.main,
 	},
 	subtitle: {
-		color: 'tan',
+		color: theme.palette.secondary.dark,
 		textTransform: 'uppercase',
 	},
 	content: {
@@ -31,27 +31,28 @@ const useStyles = makeStyles((theme) => ({
 		zIndex: 1,
 	},
 	textContainer: {
-		backgroundColor: 'black',
+		backgroundColor: theme.palette.primary.main,
 	},
 }));
 
 const Header = () => {
-	const [age, setAge] = useState(0);
 	const classes = useStyles();
+	const [age, setAge] = useState(0);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setAge(dayjs().diff(dayjs('1996-11-02'), 'year', true));
-		}, 50);
+		});
+
 		return () => clearInterval(interval);
-	});
+	}, []);
 
 	return (
 		<Box className={classes.typedContainer}>
 			<Grid container justify="center">
 				<Avatar className={classes.avatar} src={avatar} alt="Keith Cheong" />
 			</Grid>
-			<Box className={classes.textContainer}>
+			<Grid className={classes.textContainer}>
 				<Typography className={classes.title} variant="h4">
 					<Typed
 						strings={[
@@ -79,7 +80,7 @@ const Header = () => {
 				<Typography className={classes.content} varient="body1">
 					Still WIP (Don't judge)
 				</Typography>
-			</Box>
+			</Grid>
 		</Box>
 	);
 };
