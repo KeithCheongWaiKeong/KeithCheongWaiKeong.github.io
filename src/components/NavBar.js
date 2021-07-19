@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
 import {
 	AppBar,
 	Avatar,
 	Button,
-	Container,
 	Drawer,
 	IconButton,
 	List,
@@ -26,23 +26,23 @@ const tabDetails = [
 	{
 		name: 'Resume',
 		path: '/resume',
-		icon: <DescriptionIcon color="secondary" />,
+		icon: <DescriptionIcon />,
 	},
 	{
 		name: 'Documentation',
 		path: '/doc',
-		icon: <FormatAlignLeftIcon color="secondary" />,
+		icon: <FormatAlignLeftIcon />,
 	},
 	{
 		name: 'Contact',
 		path: '/contact',
-		icon: <PhoneIcon color="secondary" />,
+		icon: <PhoneIcon />,
 	},
 ];
 
 const DesktopHeader = props => {
 	const classes = useStyles();
-	const { value, setValue } = props;
+	const { age, value, setValue } = props;
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -53,7 +53,7 @@ const DesktopHeader = props => {
 	};
 
 	return (
-		<AppBar className={classes.desktopAppBarContainer} position="static">
+		<AppBar className={classes.desktopAppBarContainer} position="sticky">
 			<Avatar className={classes.avatar} src={avatar} alt="Keith Cheong" />
 			<Button
 				color="inherit"
@@ -63,7 +63,9 @@ const DesktopHeader = props => {
 				component={Link}
 				onClick={resetValue}
 			>
-				<Typography className={classes.avatarText}>Keith Cheong</Typography>
+				<Typography className={classes.avatarText} noWrap>
+					{`Keith Cheong: ${age.toPrecision(11)} Years Old`}
+				</Typography>
 			</Button>
 			<Tabs
 				value={value}
@@ -81,7 +83,7 @@ const DesktopHeader = props => {
 
 const MobileHeader = props => {
 	const classes = useStyles();
-	const { drawerOpen, setDrawerOpen, setValue } = props;
+	const { age, drawerOpen, setDrawerOpen, setValue } = props;
 
 	const handleDrawerOpen = () => {
 		setDrawerOpen(true);
@@ -110,13 +112,15 @@ const MobileHeader = props => {
 				component={Link}
 				onClick={resetValue}
 			>
-				<Typography className={classes.avatarText}>Keith Cheong</Typography>
+				<Typography
+					className={classes.avatarText}
+				>{`Keith Cheong: ${age.toPrecision(11)} Years Old`}</Typography>
 			</Button>
 			<Drawer
 				classes={{ paper: classes.drawerContainer }}
 				anchor="left"
 				open={drawerOpen}
-				onClose={handleDrawerOpen}
+				onClose={handleDrawerClose}
 			>
 				<List>
 					{tabDetails.map((detail, index) => (
@@ -127,7 +131,9 @@ const MobileHeader = props => {
 							component={Link}
 							onClick={() => handleDrawerClose(index)}
 						>
-							<ListItemIcon>{detail.icon}</ListItemIcon>
+							<ListItemIcon className={classes.drawerIcon}>
+								{detail.icon}
+							</ListItemIcon>
 							<ListItemText primaryTypographyProps={{ color: 'secondary' }}>
 								{detail.name}
 							</ListItemText>
@@ -143,6 +149,17 @@ const NavBar = () => {
 	const [mobileView, setMobileView] = useState(false);
 	const [value, setValue] = useState(null);
 	const [drawerOpen, setDrawerOpen] = useState(false);
+	const [age, setAge] = useState(0);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setAge(dayjs().diff(dayjs('1996-11-02'), 'year', true));
+		});
+
+		return () => {
+			clearInterval(interval);
+		};
+	});
 
 	useEffect(() => {
 		const setResponsiveness = () => {
@@ -158,22 +175,25 @@ const NavBar = () => {
 
 	return mobileView ? (
 		<MobileHeader
+			age={age}
 			drawerOpen={drawerOpen}
 			setDrawerOpen={setDrawerOpen}
 			setValue={setValue}
 		/>
 	) : (
-		<DesktopHeader value={value} setValue={setValue} />
+		<DesktopHeader age={age} value={value} setValue={setValue} />
 	);
 };
 
 const useStyles = makeStyles(theme => ({
 	desktopAppBarContainer: {
+		minHeight: 56,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 	},
 	mobileAppBarContainer: {
+		minHeight: 56,
 		flexDirection: 'row',
 		alignItems: 'center',
 	},
@@ -188,6 +208,9 @@ const useStyles = makeStyles(theme => ({
 	},
 	drawerContainer: {
 		backgroundColor: theme.palette.primary.main,
+	},
+	drawerIcon: {
+		color: theme.palette.secondary.main,
 	},
 }));
 

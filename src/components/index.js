@@ -1,14 +1,7 @@
-import React from 'react';
-import Header from './Header';
-import Particles from './Particles';
+import NavBar from './NavBar';
+import Home from './Home';
+import Resume from './Resume';
+import Documentation from './Documentation';
+import Contact from './Contact';
 
-const Home = () => {
-	return (
-		<React.Fragment>
-			<Header />
-			<Particles />
-		</React.Fragment>
-	);
-};
-
-export default Home;
+export { NavBar, Home, Resume, Documentation, Contact };

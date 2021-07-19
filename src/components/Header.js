@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Typed from 'react-typed';
-import dayjs from 'dayjs';
-import { Box, Typography, Grid, Avatar } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Box, makeStyles, Typography, Grid, Avatar } from '@material-ui/core';
 import avatar from '../avatar.jpg';
 
 const useStyles = makeStyles(theme => ({
@@ -18,15 +16,12 @@ const useStyles = makeStyles(theme => ({
 		color: theme.palette.secondary.dark,
 		textTransform: 'uppercase',
 	},
-	content: {
-		color: 'white',
-	},
 	typedContainer: {
 		position: 'absolute',
 		top: '50%',
 		left: '50%',
 		transform: 'translate(-50%,-50%)',
-		width: '100vw',
+		width: '100%',
 		textAlign: 'center',
 		zIndex: 1,
 	},
@@ -37,15 +32,6 @@ const useStyles = makeStyles(theme => ({
 
 const Header = () => {
 	const classes = useStyles();
-	const [age, setAge] = useState(0);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setAge(dayjs().diff(dayjs('1996-11-02'), 'year', true));
-		});
-
-		return () => clearInterval(interval);
-	}, []);
 
 	return (
 		<Box className={classes.typedContainer}>
@@ -54,16 +40,7 @@ const Header = () => {
 			</Grid>
 			<Grid className={classes.textContainer}>
 				<Typography className={classes.title} variant="h4">
-					<Typed
-						strings={[
-							'Keith Cheong',
-							`${age.toPrecision(12)} Years Old, Human`,
-						]}
-						typeSpeed={40}
-						backDelay={5000}
-						backSpeed={50}
-						loop
-					/>
+					<Typed strings={['Keith Cheong']} typeSpeed={40} />
 				</Typography>
 				<Typography className={classes.subtitle} variant="h5">
 					<Typed
@@ -73,11 +50,12 @@ const Header = () => {
 							'Fullstack Developer',
 						]}
 						typeSpeed={40}
+						backDelay={1000}
 						backSpeed={50}
 						loop
 					/>
 				</Typography>
-				<Typography className={classes.content} varient="body1">
+				<Typography style={{ color: 'white' }}>
 					Still WIP (Don't judge)
 				</Typography>
 			</Grid>

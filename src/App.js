@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
+import { NavBar, Home, Resume, Documentation, Contact } from './components';
 import './App.css';
-import Home from './components';
-import NavBar from './components/NavBar';
 
 const theme = createTheme({
 	palette: {
@@ -24,12 +23,11 @@ function App() {
 			<ThemeProvider theme={theme}>
 				<BrowserRouter>
 					<NavBar />
-					<Home />
 					<Switch>
 						<Route exact path="/" component={Home} />
-						<Route exact path="/resume" component={Home} />
-						<Route exact path="/doc" component={Home} />
-						<Route exact path="/contact" component={Home} />
+						<Route exact path="/resume" component={Resume} />
+						<Route exact path="/doc" component={Documentation} />
+						<Route exact path="/contact" component={Contact} />
 					</Switch>
 				</BrowserRouter>
 			</ThemeProvider>
