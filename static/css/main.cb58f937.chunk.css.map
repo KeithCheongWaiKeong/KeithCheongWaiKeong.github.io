@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAAA,KACC,kFAAsE,CAItE,qBACD","file":"main.cb58f937.chunk.css","sourcesContent":["body {\n\tbackground: url(mechanicalkeyboards.jpg) no-repeat center center fixed;\n\t-webkit-background-size: cover;\n\t-moz-background-size: cover;\n\t-o-background-size: cover;\n\tbackground-size: cover;\n}\n"]}
