@@ -1,6 +1,60 @@
 import React from 'react';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 
+const resumeData = [
+	{
+		year: 2021,
+		content: [
+			{
+				jobTitle: 'TBD',
+				companyName: 'TBD',
+				duration: 'TBD',
+				description:
+					'Joining the company soon, but since it has not been fully confirmed and the first day has not started, this will be left as TBD.',
+			},
+		],
+	},
+	{
+		year: 2020,
+		content: [
+			{
+				jobTitle: 'Software Developer (Fullstack) Trainee',
+				companyName: 'HealthBeats™ Pte Ltd',
+				duration: 'Sep 2020 - Sep 2021',
+				description:
+					'Contributed to the development of the Frontend, Backend & Mobile modules of the Healthbeats™ system built on JavaScript and TypeScript, using the ReactJS & React Native frameworks. Remastered the typography used by the web application to consolidate all the fonts that the UI/UX designer uses. Took part in the Stabilisation Phase as both tester and bug fixer. Created migration scripts to change the production SQL database. Developed new cronjobs for business requirements. Added various modules into the system according to the business requirements of clients.',
+			},
+		],
+	},
+];
+
+const unrelatedData = [
+	{
+		year: 2019,
+		content: [
+			{
+				jobTitle: 'Admin Assistant',
+				companyName: 'New Creation Church, Rock Kidz Department',
+				duration: 'Aug – Sep 2019, Jul – Sep 2018',
+				description:
+					'Performed on-field and on-call parent support for implementing the new PDPA laws. Supported data entry collection for multiple events. Sorted data in multiple events. Streamlined and automated data storing using spreadsheet formulae for future Rock Kidz Camps. Supported the camps on-site regarding administrative matters',
+			},
+		],
+	},
+	{
+		year: 2015,
+		content: [
+			{
+				jobTitle: 'Intern',
+				companyName: "The Boys' Brigade of Singapore",
+				duration: 'Feb - Apr 2015',
+				description:
+					'Supported and facilitated different events in the Boys’ Brigade (BB) such as the 85th Anniversary, Stakeholder meetings, and Foreign BB Visitors.',
+			},
+		],
+	},
+];
+
 const Resume = () => {
 	const classes = useStyles();
 	return (
@@ -9,118 +63,99 @@ const Resume = () => {
 				Working Experience
 			</Typography>
 			<Box component="div" className={classes.timeLine}>
-				<Typography
-					variant="h2"
-					className={`${classes.timeLineYear} ${classes.timeLineItem}`}
-				>
-					2013
-				</Typography>
-				<Box component="div" className={classes.timeLineItem}>
-					<Typography
-						variant="h5"
-						align="center"
-						className={classes.subHeading}
-					>
-						web design
-					</Typography>
-					<Typography variant="body1" align="center" className={classes.body1}>
-						company name where worked
-					</Typography>
-					<Typography
-						variant="subtitle1"
-						align="center"
-						className={classes.subtitle1}
-					>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quas
-						ipsa, laudantium totam perferendis possimus voluptatibus tenetur.
-						Quasi voluptatibus, nam vitae eaque ad, officia laboriosam
-						repudiandae, rerum necessitatibus nisi mollitia.
-					</Typography>
-				</Box>
-				<Typography
-					variant="h2"
-					className={`${classes.timeLineYear} ${classes.timeLineItem}`}
-				>
-					2014
-				</Typography>
-				<Box component="div" className={classes.timeLineItem}>
-					<Typography
-						variant="h5"
-						align="center"
-						className={classes.subHeading}
-					>
-						html & css
-					</Typography>
-					<Typography variant="body1" align="center" className={classes.body1}>
-						company name where worked
-					</Typography>
-					<Typography
-						variant="subtitle1"
-						align="center"
-						className={classes.subtitle1}
-					>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quas
-						ipsa, laudantium totam perferendis possimus voluptatibus tenetur.
-						Quasi voluptatibus, nam vitae eaque ad, officia laboriosam
-						repudiandae, rerum necessitatibus nisi mollitia.
-					</Typography>
-				</Box>
-				<Typography
-					variant="h2"
-					className={`${classes.timeLineYear} ${classes.timeLineItem}`}
-				>
-					2015
-				</Typography>
-				<Box component="div" className={classes.timeLineItem}>
-					<Typography
-						variant="h5"
-						align="center"
-						className={classes.subHeading}
-					>
-						Fullstack Javascript
-					</Typography>
-					<Typography variant="body1" align="center" className={classes.body1}>
-						company name where worked
-					</Typography>
-					<Typography
-						variant="subtitle1"
-						align="center"
-						className={classes.subtitle1}
-					>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quas
-						ipsa, laudantium totam perferendis possimus voluptatibus tenetur.
-						Quasi voluptatibus, nam vitae eaque ad, officia laboriosam
-						repudiandae, rerum necessitatibus nisi mollitia.
-					</Typography>
-				</Box>
-				<Typography
-					variant="h2"
-					className={`${classes.timeLineYear} ${classes.timeLineItem}`}
-				>
-					2017
-				</Typography>
-				<Box component="div" className={classes.timeLineItem}>
-					<Typography
-						variant="h5"
-						align="center"
-						className={classes.subHeading}
-					>
-						Django & React
-					</Typography>
-					<Typography variant="body1" align="center" className={classes.body1}>
-						company name where worked
-					</Typography>
-					<Typography
-						variant="subtitle1"
-						align="center"
-						className={classes.subtitle1}
-					>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quas
-						ipsa, laudantium totam perferendis possimus voluptatibus tenetur.
-						Quasi voluptatibus, nam vitae eaque ad, officia laboriosam
-						repudiandae, rerum necessitatibus nisi mollitia.
-					</Typography>
-				</Box>
+				{resumeData.map(year => (
+					<React.Fragment>
+						<Typography
+							variant="h2"
+							className={`${classes.timeLineYear} ${classes.timeLineItem}`}
+						>
+							{year.year}
+						</Typography>
+						<Box component="div" className={classes.timeLineItem}>
+							{year.content.map(content => (
+								<React.Fragment>
+									<Typography
+										variant="h5"
+										align="center"
+										className={classes.subHeading}
+									>
+										{content.jobTitle}
+									</Typography>
+									<Typography
+										variant="body1"
+										align="center"
+										className={classes.body1}
+									>
+										{content.companyName}
+									</Typography>
+									<Typography
+										variant="subtitle2"
+										align="center"
+										className={classes.subtitle2}
+									>
+										{content.duration}
+									</Typography>
+									<Typography
+										variant="subtitle1"
+										align="center"
+										className={classes.subtitle1}
+									>
+										{content.description}
+									</Typography>
+								</React.Fragment>
+							))}
+						</Box>
+					</React.Fragment>
+				))}
+			</Box>
+			<Typography variant="h4" align="center" className={classes.heading}>
+				Unrelated Experience
+			</Typography>
+			<Box component="div" className={classes.timeLine}>
+				{unrelatedData.map(year => (
+					<React.Fragment>
+						<Typography
+							variant="h2"
+							className={`${classes.timeLineYear} ${classes.timeLineItem}`}
+						>
+							{year.year}
+						</Typography>
+						<Box component="div" className={classes.timeLineItem}>
+							{year.content.map(content => (
+								<React.Fragment>
+									<Typography
+										variant="h5"
+										align="center"
+										className={classes.subHeading}
+									>
+										{content.jobTitle}
+									</Typography>
+									<Typography
+										variant="body1"
+										align="center"
+										className={classes.body1}
+									>
+										{content.companyName}
+									</Typography>
+									<Typography
+										variant="subtitle2"
+										align="center"
+										className={classes.subtitle2}
+									>
+										{content.duration}
+									</Typography>
+									<Typography
+										variant="subtitle1"
+										align="center"
+										className={classes.subtitle1}
+									>
+										{content.description}
+									</Typography>
+								</React.Fragment>
+							))}
+						</Box>
+					</React.Fragment>
+				))}
 			</Box>
 		</Box>
 	);
@@ -130,7 +165,7 @@ const useStyles = makeStyles(theme => ({
 	mainContainer: {
 		background: theme.palette.primary.dark,
 		overflow: 'auto',
-		maxHeight: window.innerHeight,
+		maxHeight: window.innerHeight - 56,
 	},
 	timeLine: {
 		position: 'relative',
@@ -223,10 +258,14 @@ const useStyles = makeStyles(theme => ({
 	subHeading: {
 		color: '#fff',
 		padding: 0,
+		marginTop: 8,
 		textTransform: 'uppercase',
 	},
 	body1: {
 		color: theme.palette.secondary.main,
+	},
+	subtitle2: {
+		color: theme.palette.primary.light,
 	},
 	subtitle1: {
 		color: 'tan',
